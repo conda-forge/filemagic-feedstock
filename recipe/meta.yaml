@@ -10,19 +10,21 @@ source:
   sha256: "e684359ef40820fe406f0ebc5bf8a78f89717bdb7fed688af68082d991d6dbf3"
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
     - libmagic
-    - python
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - magic
 
